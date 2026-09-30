@@ -1,0 +1,33 @@
+/* Fallback responsivo provisório — o layout mobile de verdade vem na fase 3. */
+:root { color-scheme: light; }
+.container { padding-inline: 16px; }
+.content { width: min(var(--container-content), 100% - 32px); }
+
+@media (max-width: 960px) {
+  .hero { height: auto; }
+  .hero__inner { flex-direction: column; align-items: flex-start; gap: 24px; padding: 32px 16px; }
+  .hero__offer { flex-wrap: wrap; height: auto; }
+  .hero__offer > * { padding-block: 16px; }
+  .search-pill { width: 100%; }
+  .categories { flex-wrap: wrap; }
+  .plans__track, .exclusives__grid { flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .flash__banner { height: auto; }
+  .flash__banner-art { display: none; }
+  .flash__banner-body { padding: 24px 16px; }
+  .flash__chips { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); width: 100%; }
+  .sales-card__row { flex-direction: column; align-items: stretch; }
+  .sales-card .btn--success { width: 100%; margin-left: 0; }
+  .apps__grid { grid-template-columns: 1fr; }
+  .a11y-tools { display: none; }
+  .site-footer { height: auto; padding: 24px 16px 88px; }
+  .site-footer__inner { position: static; }
+  .site-footer__links { flex-wrap: wrap; }
+  .site-footer__logo { right: 16px; top: auto; bottom: 24px; }
+  .cart { width: 100%; }
+}
+@media (max-width: 480px) {
+  .hero__kicker { font-size: 36px; }
+  .hero__headline { font-size: 44px; }
+  .plan-card, .promo-card { width: 100%; }
+  .flash__head { flex-wrap: wrap; gap: 8px; }
+}
