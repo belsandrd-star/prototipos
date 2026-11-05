@@ -48,7 +48,7 @@ Checkout → Análise de crédito
                ├─ Contratar → Conclusão
                └─ Prefiro não continuar → Sem banda larga
 
-"Prefiro não continuar" nas telas 1, 2.2, 3 e 3.1 → Agradecemos seu interesse
+"Prefiro não continuar" em qualquer modal da troca (1, 2.2, 3, 3.1 e 4) → 5 Oferta Flex
 ```
 
 ## Estrutura

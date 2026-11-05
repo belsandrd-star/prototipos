@@ -64,7 +64,7 @@
       <p class="sheet__subtitle">${sub}</p>
     </div>`;
 
-  const footer = (primaryLabel, { disabled = true, secondary = 'Prefiro não continuar', secondaryAction = 'desistir' } = {}) => `
+  const footer = (primaryLabel, { disabled = true, secondary = 'Prefiro não continuar', secondaryAction = 'flex' } = {}) => `
     <div class="sheet__footer">
       <button class="btn btn--primary btn--block" type="button" data-action="primary" ${disabled ? 'disabled' : ''}>${primaryLabel}</button>
       <button class="link-btn" type="button" data-action="${secondaryAction}">${secondary}</button>
@@ -89,7 +89,7 @@
           ${field({ id: 'cpf', label: 'CPF de quem será o titular', mode: 'numeric' })}
         </div>
       </div>
-      ${footer('Continuar', { secondaryAction: 'flex' })}`,
+      ${footer('Continuar')}`,
 
     // 2.2 — CPF já na base
     endereco: () => `
