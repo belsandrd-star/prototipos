@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Análise de crédito — protótipo navegável</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-close" viewBox="0 0 24 24"><path fill="currentColor" d="M12 23C18.07 23 23 18.07 23 12S18.07 1 12 1 1 5.93 1 12s4.93 11 11 11Zm0-20c4.96 0 9 4.04 9 9s-4.04 9-9 9-9-4.04-9-9 4.04-9 9-9Z"/><path fill="currentColor" d="M8.29 15.71a1 1 0 0 0 1.41 0L12 13.41l2.29 2.3a1 1 0 0 0 1.41-1.41L13.41 12l2.29-2.29a1 1 0 0 0-1.41-1.42L12 10.59 9.71 8.3a1 1 0 0 0-1.42 1.4L10.59 12l-2.3 2.29a1 1 0 0 0 0 1.42Z"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1Zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9Z"/><path fill="currentColor" d="m15.29 8.29-4.79 4.8-1.79-1.79a1 1 0 0 0-1.41 1.41l2.5 2.5a1 1 0 0 0 1.41 0l5.5-5.5a1 1 0 1 0-1.42-1.42Z"/></symbol>
+  <symbol id="i-error" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1Zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9Z"/><path fill="currentColor" d="M15.71 8.29a1 1 0 0 0-1.42 0L12 10.59 9.71 8.29a1 1 0 0 0-1.42 1.42L10.59 12l-2.3 2.29a1 1 0 1 0 1.42 1.42L12 13.41l2.29 2.3a1 1 0 0 0 1.42-1.42L13.41 12l2.3-2.29a1 1 0 0 0 0-1.42Z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 9.2 12.6 2.2a1 1 0 0 0-1.2 0l-9 7A1 1 0 0 0 2 10v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10a1 1 0 0 0-.4-.8ZM14 21h-4v-7h4v7Zm6 0h-4v-8a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v8H4V10.5l8-6.23 8 6.23V21Z"/></symbol>
+  <symbol id="i-location" viewBox="0 0 24 24"><path fill="currentColor" d="M18.37 3.7A8.9 8.9 0 0 0 12 1a8.9 8.9 0 0 0-6.37 2.7A9.16 9.16 0 0 0 3 10.18c0 6.81 8.09 12.41 8.44 12.64a1 1 0 0 0 1.12 0C12.91 22.59 21 17 21 10.18a9.16 9.16 0 0 0-2.63-6.48ZM12 20.76C10.25 19.42 5 15 5 10.18c0-1.9.75-3.75 2.06-5.09A6.9 6.9 0 0 1 12 3c1.87 0 3.62.74 4.94 2.1A7.2 7.2 0 0 1 19 10.18C19 15 13.75 19.42 12 20.76Z"/><path fill="currentColor" d="M12 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path fill="currentColor" d="M2.68 9.73A13.6 13.6 0 0 1 12 6c3.42 0 6.74 1.32 9.32 3.73a1 1 0 1 0 1.36-1.46A15.6 15.6 0 0 0 12 4C8.06 4 4.26 5.52 1.32 8.27a1 1 0 1 0 1.36 1.46Z"/><path fill="currentColor" d="M5.55 12.84A12 12 0 0 1 12 11c2.38 0 4.66.66 6.45 1.84a1 1 0 0 0 1.1-1.68A14 14 0 0 0 12 9a14 14 0 0 0-7.55 2.16 1 1 0 1 0 1.1 1.68Z"/><path fill="currentColor" d="M12 16c-.86 0-1.7.28-2.4.8a1 1 0 1 1-1.2-1.6A6 6 0 0 1 12 14c1.3 0 2.55.42 3.6 1.2a1 1 0 0 1-1.2 1.6A4 4 0 0 0 12 16Zm0 2a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H12Z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M7 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3H7Zm0 2h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm3 1a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2h-4Zm2 11a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path fill="currentColor" d="M21.41 11.58 12.41 2.58A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7c0 .53.21 1.04.59 1.41l9 9a2 2 0 0 0 2.82 0l7-7a2 2 0 0 0 0-2.83ZM13 20l-9-9V4h7l9 9-7 7Z"/><circle fill="currentColor" cx="7.5" cy="7.5" r="1.5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path fill="currentColor" d="M18 9h-1V7A5 5 0 0 0 7 7v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2ZM9 7a3 3 0 0 1 6 0v2H9V7Zm9 14H6V11h12v10Z"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path fill="currentColor" d="M4 7h9.17a3 3 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-1.17a3 3 0 0 0-5.66 0H4a1 1 0 0 0 0 2Zm12-2a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM20 11h-9.17a3 3 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3 3 0 0 0 5.66 0H20a1 1 0 1 0 0-2ZM8 13a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM20 17h-3.17a3 3 0 0 0-5.66 0H4a1 1 0 1 0 0 2h7.17a3 3 0 0 0 5.66 0H20a1 1 0 1 0 0-2Zm-6 2a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></symbol>
+</svg>
+
+<!-- ============ CHECKOUT (fundo) ============ -->
+<div class="page" id="checkout">
+  <header class="topbar">
+    <span class="topbar__brand">operadora</span>
+    <span class="topbar__secure"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg> Ambiente de compra segura</span>
+  </header>
+
+  <main class="checkout">
+    <p class="eyebrow">Etapa 3 de 3</p>
+    <h1 class="checkout__title">Confirme seu pedido</h1>
+
+    <section class="block">
+      <h2 class="block__title">Seu pedido</h2>
+      <div class="summary">
+        <span class="summary__icon"><svg class="ico" aria-hidden="true"><use href="#i-wifi"/></svg></span>
+        <span class="summary__name">Internet 600 Mega</span>
+        <span class="summary__price">R$ 99,90<small>/mês</small></span>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="block__title">Como você quer receber a sua fatura?</h2>
+      <div class="bill-options" role="radiogroup" aria-label="Forma de recebimento da fatura">
+        <label class="bill is-selected">
+          <input type="radio" name="bill" checked>
+          <span class="bill__name">Fatura digital por e-mail</span>
+          <span class="bill__note bill__note--success">Você vai receber a sua fatura por e-mail <strong>sem custos adicionais</strong> com mais segurança.</span>
+        </label>
+        <label class="bill">
+          <input type="radio" name="bill">
+          <span class="bill__name">Fatura impressa por correio</span>
+          <span class="bill__note bill__note--warning">Receber a sua fatura por correio terá <strong>R$ 5,00 de custos adicionais</strong> por mês.</span>
+        </label>
+      </div>
+      <div class="field is-filled field--static">
+        <span class="field__label">E-mail</span>
+        <span class="field__value">cliente@exemplo.com</span>
+      </div>
+    </section>
+
+    <button class="btn btn--sale btn--block" id="btn-confirmar" type="button">Confirmar e fechar pedido</button>
+    <p class="legal">Ofertas válidas exclusivamente nas contratações através do site para pessoa física, sujeitas à análise de crédito e disponibilidade técnica dos serviços no endereço solicitado.</p>
+  </main>
+
+  <footer class="sticky-total">
+    <div>
+      <span class="sticky-total__label">Valor total</span>
+      <strong class="sticky-total__value">R$ 99,90 <small>/mês</small></strong>
+    </div>
+    <span class="sticky-total__link">Ver pedido</span>
+  </footer>
+</div>
+
+<!-- ============ PÁGINAS DE CONCLUSÃO ============ -->
+<div class="page page--result" id="result" hidden>
+  <header class="topbar topbar--red"><span class="topbar__brand">operadora</span></header>
+  <div class="result">
+    <div class="result__card" id="result-card"></div>
+    <button class="link-btn" type="button" data-action="restart">Recomeçar o protótipo</button>
+  </div>
+  <footer class="site-footer">Dados e marcas fictícios · protótipo de demonstração</footer>
+</div>
+
+<!-- ============ OVERLAY + MODAL / BOTTOM SHEET ============ -->
+<div class="overlay" id="overlay" hidden>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" tabindex="-1"></div>
+</div>
+
+<!-- ============ LOADING GLOBAL ============ -->
+<div class="global-loading" id="global-loading" hidden role="status" aria-live="polite">
+  <span class="spinner spinner--lg" aria-hidden="true"></span>
+  <span id="global-loading-text">Analisando seu pedido…</span>
+</div>
+
+<!-- ============ PAINEL DE CENÁRIOS (apresentação) ============ -->
+<button class="scenario-toggle" id="scenario-toggle" type="button" aria-expanded="false" aria-controls="scenario-panel">
+  <svg class="ico" aria-hidden="true"><use href="#i-sliders"/></svg> Cenários
+</button>
+<aside class="scenario-panel" id="scenario-panel" hidden aria-label="Cenários do protótipo">
+  <p class="scenario-panel__title">Cenários do protótipo</p>
+  <p class="scenario-panel__hint">Escolha as respostas simuladas antes de navegar.</p>
+  <fieldset><legend>Análise de crédito</legend>
+    <label><input type="radio" name="credito" value="reprovado" checked> Reprovado</label>
+    <label><input type="radio" name="credito" value="aprovado"> Aprovado</label>
+  </fieldset>
+  <fieldset><legend>CPF do novo titular já está na base?</legend>
+    <label><input type="radio" name="base" value="nao" checked> Não</label>
+    <label><input type="radio" name="base" value="sim"> Sim</label>
+  </fieldset>
+  <fieldset><legend>API BVC (dados do titular)</legend>
+    <label><input type="radio" name="bvc" value="ok" checked> Responde</label>
+    <label><input type="radio" name="bvc" value="falha"> Falha</label>
+  </fieldset>
+  <fieldset><legend>Novo CPF aprovado?</legend>
+    <label><input type="radio" name="novo" value="nao" checked> Não</label>
+    <label><input type="radio" name="novo" value="sim"> Sim</label>
+  </fieldset>
+  <button class="btn btn--primary btn--block btn--sm" type="button" data-action="restart">Recomeçar do checkout</button>
+</aside>
+
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+/* =========================================================
+   Tokens — nomes espelham as variáveis do design system no Figma
+   (color/…, border/…, spacing/…, shadow/…). Troque os valores
+   aqui para aplicar a identidade real.
+   ========================================================= */
+
+@font-face { font-family: "Roboto"; font-weight: 400; font-display: swap; src: url("../assets/fonts/roboto-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Roboto"; font-weight: 500; font-display: swap; src: url("../assets/fonts/roboto-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Roboto"; font-weight: 700; font-display: swap; src: url("../assets/fonts/roboto-latin-700-normal.woff2") format("woff2"); }
+/* Substituta pública da fonte proprietária de títulos (AMX). */
+@font-face { font-family: "Display Fallback"; font-weight: 400; font-display: swap; src: url("../assets/fonts/figtree-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Display Fallback"; font-weight: 500; font-display: swap; src: url("../assets/fonts/figtree-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Display Fallback"; font-weight: 700; font-display: swap; src: url("../assets/fonts/figtree-latin-700-normal.woff2") format("woff2"); }
+
+:root {
+  /* Tipografia */
+  --font-base: "Roboto", system-ui, sans-serif;
+  --font-display: "AMX", "Display Fallback", "Roboto", sans-serif;
+  --line-height-tight: 1.3;
+
+  /* color/brand */
+  --color-brand-primary-lightest: #FFE3E3;
+  --color-brand-primary-medium: #DA291C;
+  --color-brand-primary-dark: #B41E13;
+  --color-brand-secondary-darkest: #005C66;
+
+  /* color/neutral */
+  --color-neutral-lightest: #FFFFFF;
+  --color-neutral-light: #F8F8F8;
+  --color-neutral-medium: #DBDBDB;
+  --color-neutral-dark: #525252;
+  --color-neutral-dark-alt: #51555D;
+  --color-neutral-darkest: #1F1D1D;
+
+  /* color/support */
+  --color-support-success-light: #DDF9ED;
+  --color-support-success-dark: #006B4F;
+  --color-support-highlight-lightest: #FFFAAD;
+  --color-support-highlight-medium: #FFC722;
+  --color-support-highlight-darkest: #B84D01;
+
+  /* border */
+  --border-width-thin: 1px;
+  --border-radius-xxs: 4px;
+  --border-radius-xs: 8px;
+  --border-radius-sm: 12px;
+  --border-radius-pill: 500px;
+
+  /* spacing */
+  --spacing-xxxs: 4px;
+  --spacing-xxs: 8px;
+  --spacing-xs: 12px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+
+  /* shadow */
+  --shadow-level-1: 0 4px 8px 0 rgba(31, 29, 29, 0.16);
+  --shadow-level-1-drop: 0 4px 4px rgba(31, 29, 29, 0.16);
+  --shadow-card-subtle: 0 0 2px rgba(0, 0, 0, 0.15);
+  --shadow-drawer: 0 0 7px rgba(49, 49, 49, 0.15);
+  --shadow-sticky-footer: 0 -8px 12px rgba(31, 29, 29, 0.16);
+
+  /* overlay */
+  --color-overlay: rgba(21, 21, 21, 0.7);
+
+  /* layout */
+  --container-wide: 1264px;
+  --container-content: 904px;
+  --drawer-width: 505px;
+}
+
+/* motion — fase 2 */
+:root {
+  --motion-ease-out: cubic-bezier(0.2, 0, 0, 1);     /* entradas */
+  --motion-ease-in: cubic-bezier(0.3, 0, 1, 1);      /* saídas */
+  --motion-duration-fast: 200ms;
+  --motion-duration-medium: 280ms;
+  --motion-duration-highlight: 1600ms;
+}
